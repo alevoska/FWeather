@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32510.428
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FWeather", "FWeather.csproj", "{BB6A4493-BC31-4A05-B510-2CB5863EC441}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB6A4493-BC31-4A05-B510-2CB5863EC441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB6A4493-BC31-4A05-B510-2CB5863EC441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB6A4493-BC31-4A05-B510-2CB5863EC441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB6A4493-BC31-4A05-B510-2CB5863EC441}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4593C3E9-2C6D-4419-96EA-3ED8F6CEAC17}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,17 @@
+<h1 id="tableLabel">Locations</h1>
+
+<p *ngIf="!locations"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="locations">
+  <tbody>
+    <tr>
+      <td><input style="max-width: 140px" [(ngModel)]="newLocationInput"></td>
+      <td><button class="btn btn-primary" (click)="createLocation()">Add</button></td>
+    </tr>
+    <tr *ngFor="let location of locations">
+      <td><button class="btn btn-link" (click)="selectLocation(location.locationId)">{{ location.title }}</button></td>
+      <td><button class="btn btn-secondary" (click)="deleteLocation(location.locationId)">Delete</button></td>
+    </tr>
+
+  </tbody>
+</table>

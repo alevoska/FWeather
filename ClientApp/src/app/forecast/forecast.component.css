@@ -1,0 +1,27 @@
+table.forecast-table td {
+    vertical-align: middle;
+}
+
+.forecast-container {
+    max-height: 400px;
+    overflow-x: visible;
+    overflow-y: scroll;
+}
+
+.forecast-temperature {
+    font-weight: bold;
+    color: red;
+}
+
+.forecast-temperature-negative {
+    color: navy;
+}
+
+.forecast-wind-speed {
+    font-weight: bold;
+    color: navy;
+}
+
+/* .forecast-graph {
+    border: 1px solid grey;
+} */

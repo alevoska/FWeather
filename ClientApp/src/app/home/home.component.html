@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col col-lg-4">
+      <app-locations (selected)="onSelected($event)"></app-locations>
+    </div>
+    <div class="col col-lg-8">
+      <app-forecast [locationId]="locationId"></app-forecast>
+    </div>
+  </div>
+</div>
