@@ -1,80 +1,87 @@
 <h1 id="tableLabel">Weather</h1>
 
 <p *ngIf="!forecasts"><em>Loading...</em></p>
+<div class="card">
+  <div class="card-body">
+    <button class="btn btn-warning mb-3" (click)="regenerateData()">Regenerate mock data</button>
 
-<button class="btn btn-warning mb-3" (click)="regenerateData()">Regenerate mock data</button>
-
-<div class="forecast-container">
-  <table class='table table-sm forecast-table' aria-labelledby="tableLabel" *ngIf="forecasts">
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Temp.<br>°C</th>
-        <th>Precip.<br>mm</th>
-        <th>Wind<br>(m/s)</th>
-        <th>Wind Dir. <br>(°)</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><input [(ngModel)]="newDate" style="max-width: 100px" placeholder="YYYY-MM-DD"></td>
-        <td><input [(ngModel)]="newTemperature" style="max-width: 60px"></td>
-        <td><input [(ngModel)]="newPrecipitation" style="max-width: 60px"></td>
-        <td><input [(ngModel)]="newWindSpeed" style="max-width: 60px"></td>
-        <td><input [(ngModel)]="newWindDir" style="max-width: 60px" placeholder="0-360"></td>
-        <td><button class="btn btn-primary btn-sm" (click)="createItem()">Add</button></td>
-      </tr>
-      <tr *ngFor="let forecast of forecasts">
-        <td>{{ forecast.date }}</td>
-        <td class="forecast-temperature" [class.forecast-temperature-negative]="forecast.temperature<0">
-          {{ forecast.temperature }}°
-        </td>
-        <td class="forecast-precipitation">{{ forecast.precipitation }}</td>
-        <td class="forecast-wind-speed">{{ forecast.windStrength }}</td>
-        <td>{{ forecast.windDirection }}</td>
-        <td><button class="btn btn-secondary btn-sm" (click)="deleteItem($event, forecast.date)">Delete</button></td>
-      </tr>
-    </tbody>
-  </table>
+    <div class="forecast-container">
+      <table class='table table-sm forecast-table' aria-labelledby="tableLabel" *ngIf="forecasts">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Temp.<br>°C</th>
+            <th>Precip.<br>mm</th>
+            <th>Wind<br>(m/s)</th>
+            <th>Wind Dir. <br>(°)</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input [(ngModel)]="newDate" style="max-width: 100px" placeholder="YYYY-MM-DD"></td>
+            <td><input [(ngModel)]="newTemperature" style="max-width: 60px"></td>
+            <td><input [(ngModel)]="newPrecipitation" style="max-width: 60px"></td>
+            <td><input [(ngModel)]="newWindSpeed" style="max-width: 60px"></td>
+            <td><input [(ngModel)]="newWindDir" style="max-width: 60px" placeholder="0-360"></td>
+            <td><button class="btn btn-primary btn-sm" (click)="createItem()">Add</button></td>
+          </tr>
+          <tr *ngFor="let forecast of forecasts">
+            <td>{{ forecast.date }}</td>
+            <td class="forecast-temperature" [class.forecast-temperature-negative]="forecast.temperature<0">
+              {{ forecast.temperature }}°
+            </td>
+            <td class="forecast-precipitation">{{ forecast.precipitation }}</td>
+            <td class="forecast-wind-speed">{{ forecast.windStrength }}</td>
+            <td>{{ forecast.windDirection }}</td>
+            <td><button class="btn btn-secondary btn-sm" (click)="deleteItem($event, forecast.date)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
 <hr>
 
-<div class="mb-3">
-  <input style="max-width: 100px" placeholder="YYYY-MM-DD" [(ngModel)]="fromDate"> to
-  <input style="max-width: 100px" placeholder="YYYY-MM-DD" [(ngModel)]="thruDate">
-  <button class="btn btn-primary btn-sm" (click)="generateGraph()">Update</button>
-</div>
+<div class="card">
+  <div class="card-body">
+    <div class="mb-3">
+      <input style="max-width: 100px" placeholder="YYYY-MM-DD" [(ngModel)]="fromDate"> to
+      <input style="max-width: 100px" placeholder="YYYY-MM-DD" [(ngModel)]="thruDate">
+      <button class="btn btn-primary btn-sm" (click)="generateGraph()">Update</button>
+    </div>
 
-<svg class="forecast-graph" viewBox="0 0 1020 320" xmlns="http://www.w3.org/2000/svg">
-  <g font-size="16px" fill="gray" text-anchor="end" dominant-baseline="central">
-    <text x="17" y="30">30</text>
-    <text x="17" y="70">20</text>
-    <text x="17" y="110">10</text>
-    <text x="17" y="150">0</text>
-    <text x="17" y="190">-10</text>
-    <text x="17" y="230">-20</text>
-    <text x="17" y="270">-30</text>
-    <line x1="19" x2="19" y1="0" y2="300" stroke="gray" stroke-width="0.5"></line>
-  </g>
-  <svg viewBox="0 0 1000 300" x="20">
-    <g stroke="#DDDDDD" stroke-width="1.5">
-      <line x1="0" x2="1000" y1="30" y2="30"></line>
-      <line x1="0" x2="1000" y1="70" y2="70"></line>
-      <line x1="0" x2="1000" y1="110" y2="110"></line>
-      <line x1="0" x2="1000" y1="150" y2="150"></line>
-      <line x1="0" x2="1000" y1="190" y2="190"></line>
-      <line x1="0" x2="1000" y1="230" y2="230"></line>
-      <line x1="0" x2="1000" y1="270" y2="270"></line>
-    </g>
-    <g stroke-width="3" stroke-opacity="0.3">
-      <line *ngFor="let p of graphPoints" [attr.stroke]="p.color" [attr.x1]="p.x" [attr.x2]="p.x" y1="150"
-        [attr.y2]="150-p.y*4" />
-    </g>
-  </svg>
-  <g font-size="18px" fill="gray">
-    <text x="20" y="320">{{ graphFromDate }}</text>
-    <text x="1020" y="320" text-anchor="end">{{ graphThruDate }}</text>
-  </g>
-</svg>
+    <svg class="forecast-graph" viewBox="0 0 1020 320" xmlns="http://www.w3.org/2000/svg">
+      <g font-size="16px" fill="gray" text-anchor="end" dominant-baseline="central">
+        <text x="17" y="30">30</text>
+        <text x="17" y="70">20</text>
+        <text x="17" y="110">10</text>
+        <text x="17" y="150">0</text>
+        <text x="17" y="190">-10</text>
+        <text x="17" y="230">-20</text>
+        <text x="17" y="270">-30</text>
+        <line x1="19" x2="19" y1="0" y2="300" stroke="gray" stroke-width="0.5"></line>
+      </g>
+      <svg viewBox="0 0 1000 300" x="20">
+        <g stroke="#DDDDDD" stroke-width="1.5">
+          <line x1="0" x2="1000" y1="30" y2="30"></line>
+          <line x1="0" x2="1000" y1="70" y2="70"></line>
+          <line x1="0" x2="1000" y1="110" y2="110"></line>
+          <line x1="0" x2="1000" y1="150" y2="150"></line>
+          <line x1="0" x2="1000" y1="190" y2="190"></line>
+          <line x1="0" x2="1000" y1="230" y2="230"></line>
+          <line x1="0" x2="1000" y1="270" y2="270"></line>
+        </g>
+        <g stroke-width="3" stroke-opacity="0.3">
+          <line *ngFor="let p of graphPoints" [attr.stroke]="p.color" [attr.x1]="p.x" [attr.x2]="p.x" y1="150"
+            [attr.y2]="150-p.y*4" />
+        </g>
+      </svg>
+      <g font-size="18px" fill="gray">
+        <text x="20" y="320">{{ graphFromDate }}</text>
+        <text x="1020" y="320" text-anchor="end">{{ graphThruDate }}</text>
+      </g>
+    </svg>
+  </div>
+</div>

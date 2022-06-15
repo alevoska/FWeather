@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-locations',
-  templateUrl: './locations.component.html'
+  templateUrl: './locations.component.html',
+  styleUrls: ['./locations.component.css']
 })
 export class LocationsComponent {
   @Output() selected = new EventEmitter<number>();
